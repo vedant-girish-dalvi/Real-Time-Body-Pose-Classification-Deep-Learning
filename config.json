@@ -1,0 +1,79 @@
+{       
+    "dataset": {
+        "dataset_filepath": "//home//RUS_CIP//st179677//project//dataset//5 users//mocap dataset.csv",
+        "labels_path": "/home/RUS_CIP/st179677/project/dataset/5 users/labels.xlsx",
+        "features": ["Neck_flexion", "Neck_left-ward_tilt", "Neck_right-ward_rotation", 
+                    "LeftElbow_flexion", "RightElbow_flexion", 
+                    "LeftKnee_flexion", "RightKnee_flexion", 
+                    "Thorax_extension", "Thorax_lateral_flexion_rotation"]
+    },
+    
+    "filepath_1": "/home/RUS_CIP/st179677/project/model/models/Transformer/transformer_best_model.h5",
+    "logdir": "logs/softmax_2024_05_22-14_30_00",
+    "tensorboard_callback": {
+        "logdir": "logs/softmax_2024_05_22-14_30_00",
+        "histogram_freq": 1
+    },
+
+    "checkpoint": {
+        "filepath": "/home/RUS_CIP/st179677/project/model/models/Transformer/transformer_best_model.h5",
+        "monitor": "val_accuracy",
+        "verbose": 1,
+        "save_best_only": true,
+        "mode": "max"
+    },
+
+    "early_stopping": {
+        "monitor": "val_accuracy",
+        "patience": 10,
+        "verbose": 1
+    },
+
+    "adam": {
+        "learning_rate": 0.0001
+    },
+
+    "model_compile": {
+        "loss": "categorical_crossentropy",
+        "optimizer": "adam",
+        "metrics": [
+            "accuracy"
+        ]
+    },
+
+    "rnn": {
+        "input_shape": "(60, 9)",
+        "layer": "RNN",
+        "rnn_units":16,
+        "rnn_layers": 4,
+        "dense_units": 8,
+        "dense_layers":1,
+        "dropout": 0.0,
+        "epochs": 200,
+        "batch_size": 32   
+    },
+    
+    "transformer": {
+        "input_shape": "(60, 9)",
+        "head_size": 16,
+        "num_heads":3,
+        "ff_dim": 4,
+        "num_transformer_blocks": 1,
+        "mlp_units": [10],
+        "dropout": 0.1,
+        "mlp_dropout": 0.1,
+        "epochs": 200,
+        "batch_size": 48   
+    },
+    
+    "model_fit": {
+        "validation_data": "([X_val], y_val)",
+        "epochs": 1,
+        "callbacks": [
+            "checkpoint",
+            "tensorboard_callback",
+            "early_stopping"
+        ],
+        "batch_size": 48
+    }
+}
