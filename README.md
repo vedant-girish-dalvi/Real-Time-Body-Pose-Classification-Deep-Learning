@@ -1,4 +1,4 @@
-Master Thesis Project: Real-Time Body Pose Classification using Deep Learning in Microservices Architecture for Human-Exoskeleton Interaction
+# **Master Thesis Project: Real-Time Body Pose Classification using Deep Learning in Microservices Architecture for Human-Exoskeleton Interaction
 
 In recent years, industrial exoskeletons have been in demand for executing strenuous
 industrial tasks. Despite many advantages, industrial exoskeletons can restrict body
